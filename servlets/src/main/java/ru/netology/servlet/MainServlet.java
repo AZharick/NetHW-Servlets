@@ -7,23 +7,8 @@ import ru.netology.service.PostService;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
-//вынести методы в константы, убрать дублирующийся код.
 
 public class MainServlet extends HttpServlet {
-
-    //simple test method
-//  @Override
-//  protected void service(HttpServletRequest req, HttpServletResponse resp) {
-//     resp.setStatus(HttpServletResponse.SC_OK);
-//     resp.setContentType("text/plain");
-//     try {
-//       resp.getWriter().println("wasssups");
-//     } catch (IOException e) {
-//       throw new RuntimeException(e);
-//     }
-//  }
 
   private PostController controller;
 
