@@ -28,10 +28,10 @@ public class PostRepository {
       if (posts.containsKey(id)) {
          post = new Post(id, posts.get(id));
       }
-         return Optional.ofNullable(post);
+      return Optional.ofNullable(post);
    }
 
-   public Post save(Post post){
+   public Post save(Post post) {
       Post updatedPost;
       if (post.getId() == 0) {
          postsListCounter.getAndIncrement();
