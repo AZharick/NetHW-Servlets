@@ -20,6 +20,7 @@ public class PostRepository {
          Post post = new Post(i, posts.get(i));
          allPosts.add(post);
       }
+      allPosts.add(new Post(666, "sixsixsix"));    //test
       return allPosts;
    }
 
