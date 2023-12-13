@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 // Ex-Stub
 public class PostRepository {
-   protected ConcurrentHashMap<AtomicLong, String> posts = new ConcurrentHashMap<>();
+   protected ConcurrentHashMap<Long, String> posts = new ConcurrentHashMap<>();
    protected AtomicLong postsListCounter = new AtomicLong(0);
 
    public List<Post> all() {
@@ -20,7 +20,6 @@ public class PostRepository {
          Post post = new Post(i, posts.get(i));
          allPosts.add(post);
       }
-      allPosts.add(new Post(666, "sixsixsix"));    //test
       return allPosts;
    }
 
@@ -36,11 +35,11 @@ public class PostRepository {
       Post updatedPost;
       if (post.getId() == 0) {
          postsListCounter.getAndIncrement();
-         posts.put(postsListCounter, post.getContent());
+         posts.put(postsListCounter.longValue(), post.getContent());
          updatedPost = new Post(postsListCounter.longValue(), post.getContent());
       } else {
          AtomicLong id = new AtomicLong(post.getId());
-         posts.put(id, post.getContent());
+         posts.put(id.longValue(), post.getContent());
          updatedPost = new Post(id.longValue(), post.getContent());
       }
       return updatedPost;

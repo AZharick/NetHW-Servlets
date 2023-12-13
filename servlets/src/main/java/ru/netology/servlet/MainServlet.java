@@ -11,7 +11,8 @@ public class MainServlet extends HttpServlet {
    private static final String GET = "GET";
    private static final String POST = "POST";
    private static final String DELETE = "DELETE";
-   private static final String postsPath = "/api/posts";
+   private static final String POSTS_PATH = "/api/posts";
+   private static final String POSTS_PATH_W_ID = POSTS_PATH + "/\\d+";
    private PostController controller;
 
    @Override
@@ -27,24 +28,25 @@ public class MainServlet extends HttpServlet {
       try {
          final var path = req.getRequestURI();
          final var method = req.getMethod();
-         final var id = Long.parseLong(path.substring(path.lastIndexOf("/")));
 
-         if (method.equals(GET) && path.equals(postsPath)) {
+         if (method.equals(GET) && path.equals(POSTS_PATH)) {
             controller.all(resp);
             return;
          }
 
-         if (method.equals(GET) && path.matches(postsPath + "\\d+")) {
+         if (method.equals(GET) && path.matches(POSTS_PATH_W_ID)) {
+            var id = Long.parseLong(path.substring(path.lastIndexOf("/") + 1));
             controller.getById(id, resp);
             return;
          }
 
-         if (method.equals(POST) && path.equals(postsPath)) {
+         if (method.equals(POST) && path.equals(POSTS_PATH)) {
             controller.save(req.getReader(), resp);
             return;
          }
 
-         if (method.equals(DELETE) && path.matches(postsPath + "\\d+")) {
+         if (method.equals(DELETE) && path.matches(POSTS_PATH_W_ID)) {
+            var id = Long.parseLong(path.substring(path.lastIndexOf("/") + 1));
             controller.removeById(id, resp);
             return;
          }
