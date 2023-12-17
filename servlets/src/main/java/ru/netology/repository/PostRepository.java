@@ -9,7 +9,6 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-// Ex-Stub
 public class PostRepository {
    protected ConcurrentHashMap<Long, String> posts = new ConcurrentHashMap<>();
    protected AtomicLong postsListCounter = new AtomicLong(0);
